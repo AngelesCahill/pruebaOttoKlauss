@@ -86,7 +86,6 @@ export default {
          }
     },
     methods: {
-        
         validate () {
             this.$refs.form.validate();
             if (this.$refs.form.validate()) {
@@ -94,7 +93,9 @@ export default {
                     nombre: this.nombre,
                     stock: this.stock,
                     precio: parseFloat(this.precio),
-                    idDoc: this.idDoc
+                    idDoc: this.idDoc,
+                    codigo: this.codigo,
+                    imagen: this.imagen,
                 };
                 this.$store.dispatch('actualizandoProducto',datosNuevos).then(()=>{
                     Swal.fire(
@@ -105,7 +106,7 @@ export default {
                     this.reset();
                     setTimeout(()=>{
                         this.$router.replace({name: 'Inventario'});
-                    },1500);
+                    },1000);
                 });
             } else {
                 Swal.fire({
