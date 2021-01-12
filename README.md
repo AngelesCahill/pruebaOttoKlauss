@@ -1,6 +1,6 @@
 # ottoklaussprueba
 Direccion sitio: https://mystifying-rosalind-b8a8f5.netlify.app
-                 https://juguetesottoklauss.web.app/inventario
+HOSTIN FIREBASE: https://juguetesottoklauss.web.app/inventario
       USUARIO: otto@user.com
       CLAVE: 123456
 ## Project setup
