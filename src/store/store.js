@@ -62,26 +62,29 @@ export default new Vuex.Store({
         })
         .catch(error=>console.error(error));
     },
-    editandoYactualizandoInventario(context, datos){
+    
+    actualizandoProducto(context, datos){
       firebase.firestore.collection('juguetes').doc(datos.idDoc).update({
         nombre: datos.nombre,
         stock: datos.stock,
         precio: datos.precio,
-        codigo: datos.codigo,
-        imagen: datos.imagen,
       })
-     
-      .then(()=>console.log('Se editó el producto'))
-      
-      .catch(error => console.error(error));
-    },
-    actualizandoProducto(context, datosNew){
-      firebase.firestore.collection('juguetes').doc(datosNew.idDoc).update({
-        nombre: datosNew.nombre,
-        stock: datosNew.stock,
-        precio: datosNew.precio,
+      .then(()=>{
+        Swal.fire({
+          title: 'Estás seguro de guardar los cambios?',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: `Save`,
+          denyButtonText: `Don't save`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            Swal.fire('Cambios Guardados', '', 'success')
+          } else if (result.isDenied) {
+            Swal.fire('Los Cambios no han sido guardados', '', 'info')
+          }
+        })
       })
-      .then(()=>console.log('Se actualizó el producto'))
       .catch(error => console.error(error));
     }
   },

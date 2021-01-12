@@ -70,9 +70,12 @@
                             </v-card-text>
                             <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="blue darken-1" text @click.prevent="agregarProducto">
+                            
+                                <v-btn color="blue darken-1" text @click.prevent="agregarProducto">
                                 Agregar Producto
                             </v-btn>
+                            
+                            
                             <v-btn color="blue darken-1" text @click="dialog = false">
                                 Cerrar
                             </v-btn>
@@ -144,5 +147,8 @@ export default {
 </script>
 
 <style>
-
+.botAgregar{
+    margin-top: 1rem;
+    margin-left: 20rem;
+}
 </style>

@@ -86,21 +86,7 @@ export default {
          }
     },
     methods: {
-        editarYactualizar(){
-            if (this.nombre.length > 2 && this.stock > 0 && this.precio >0 && this.codigo.length >2 && this.imagen){
-                let datos = {
-                    nombre: this.nombre,
-                    stock: this.stock,
-                    precio: this.precio,
-                    codigo: this.codigo,
-                    imagen: this.imagen,
-                    idDoc: this.id
-                };
-                this.$store.dispatch('editandoYactualizandoInventario', datos);
-            } else {
-                console.log('No se puede actualizar este producto')
-            }
-        },
+        
         validate () {
             this.$refs.form.validate();
             if (this.$refs.form.validate()) {
