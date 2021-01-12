@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ottoklaussprueba
 
 ## Project setup
@@ -27,3 +28,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# pruebaOttoKlauss
+>>>>>>> ba996e872fe01ec2026b77fe37d7eb4e1e34889a
