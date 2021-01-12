@@ -10,34 +10,50 @@
         </div>
       </v-col>
     </v-row>
-      
-        <v-row>
-          <v-col cols="12" sm="12" md="6" lg="6" xl="6" >
-            <v-card class="mx-auto" max-width="344" outlined v-for="(item, index) in enviandoStock" :key="index">
-              <v-list-item>
-                <v-list-item-content>
-                  <div class="overline mb-4">
-                    {{item.nombre}}
-                  </div>
-                  <v-list-item-title class="headline mb-1">
-                    ${{item.precio}}
-                  </v-list-item-title>
-                  <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
-                </v-list-item-content>
 
-                <v-list-item-avatar tile size="80">
-                  <img max-height="200px" max-width="300px" class="mx-auto" :src="item.imagen" :alt="item.id">
-                </v-list-item-avatar>
-              </v-list-item>
+    <v-row>
+      <v-col cols="12" sm="12" md="6" lg="4" xl="4" >
+        <template>
+          <v-card class="mx-1" max-width="250" v-for="(item, index) in enviandoStock" :key="index">
+            <v-img :src="item.imagen" :height="item.nombre"></v-img>
 
-              <v-card-actions>
-                <v-btn outlined rounded text>
-                  Button
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
+            <v-card-title>
+              {{item.nombre}}
+            </v-card-title>
+
+            <v-card-subtitle>
+              ${{item.precio}}
+            </v-card-subtitle>
+
+            <v-card-actions>
+              <v-btn color="orange lighten-2" text>
+                Explore
+              </v-btn>
+
+              <v-spacer></v-spacer>
+
+              <v-btn icon @click="show = !show">
+                <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+              </v-btn>
+            </v-card-actions>
+
+            <v-expand-transition>
+              <div v-show="show">
+                <v-divider></v-divider>
+
+                <v-card-text>
+                  I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+                </v-card-text>
+              </div>
+            </v-expand-transition>
+          </v-card>
+        </template>
+      </v-col>
+    </v-row>
+    
+
+
+       
       
   </v-container>
 </template>
