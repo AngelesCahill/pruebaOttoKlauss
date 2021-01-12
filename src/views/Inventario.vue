@@ -1,9 +1,8 @@
 <template>
     <div>
-        <h1>Vista Inventario</h1>
-        <div class="ma-5 border">
+        <div class="ma-5">
             <h2 class="my-5 text-center">Inventario Tienda</h2>
-            <v-simple-table class="mt-5">
+            <v-simple-table class="ma-5 my-5">
                 <template>
                 <thead>
                     <tr>

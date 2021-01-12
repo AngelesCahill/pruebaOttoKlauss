@@ -13,15 +13,10 @@
                 <v-text-field v-model="precio" :rules="precioRules" label="Precio" required></v-text-field>
 
                 <div class="mt-5">
-                    <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate(idDoc)">
+                    <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate()">
                         Guardar
                     </v-btn>
-                    <v-btn color="error" class="mr-4" @click="reset">
-                        Borrar
-                    </v-btn>
-                    <v-btn color="warning" @click="resetValidation">
-                        Descartar
-                    </v-btn>
+                    
                     <v-btn color="primary" class="ml-4" @click="$router.go(-1)">
                         Regresar
                     </v-btn>
@@ -35,18 +30,16 @@
 import { mapGetters } from 'vuex';
 import Swal from 'sweetalert2';
 
+
 export default {
     name: 'Editar',
     props: ['id'],
     data(){
         return {
             valid: true,
-            dialog: false,
-            codigo: '',
             nombre: '',
             stock: '',
             precio: '',
-            imagen: '',
             precioRules: [
                 v => !!v || 'Precio es requerido',
                 v => (v && v.length >= 0 && /\d/gmi.test(v) && v >= 0) || 'Solo deben ser numeros positivos',
@@ -61,15 +54,7 @@ export default {
             ]
         }
     },
-    watch: {
-      dialog (val) {
-        if (!val) return
-        setTimeout(() => {
-            this.dialog = false;
-            this.$router.go(-1)
-        }, 2000)
-      },
-    },
+    
     computed: {
         ...mapGetters(['enviandoStock'])
     },
@@ -86,28 +71,33 @@ export default {
          }
     },
     methods: {
-        validate (item) {
+        validate () {
             this.$refs.form.validate();
             if (this.$refs.form.validate()) {
-                let datosNuevos = {
+                let datos = {
                     nombre: this.nombre,
-                    stock: this.stock,
                     precio: parseFloat(this.precio),
-                    idDoc: item.idDoc,
-                    codigo: this.codigo,
-                    imagen: this.imagen,
+                    stock: parseInt(this.stock),
                 };
-                this.$store.dispatch('actualizandoProducto', datosNuevos.idDoc).then(()=>{
-                    Swal.fire(
-                        'Muy Bien',
-                        'Producto Actualizado con éxito',
-                        'success'
-                    );
-                    this.reset();
-                    setTimeout(()=>{
-                        this.$router.replace({name: 'Inventario'});
-                    },1000);
-                });
+                this.$store.dispatch('actualizandoProducto',datos)
+                .then(()=>{
+                    console.log('datos actualizados')
+                    Swal.fire({
+                        title: 'Deseas guardar los cambios?',
+                        showDenyButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: `Save`,
+                        denyButtonText: `Don't save`,
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire('Cambios Guardados')
+                        } else if (result.isDenied) {
+                            Swal.fire('Los cambios no han sido guardados')
+                        }
+                        });
+                        
+                })
+                .catch(error => console.error(error));
             } else {
                 Swal.fire({
                     icon: 'error',

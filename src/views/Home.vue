@@ -12,9 +12,9 @@
     </v-row>
 
     <v-row>
-      <v-col cols="12" sm="12" md="6" lg="4" xl="4" >
-        <template>
-          <v-card class="mx-1" max-width="250" v-for="(item, index) in enviandoStock" :key="index">
+      <v-col cols="12" sm="12" md="6" lg="3" xl="3" v-for="(item, index) in enviandoStock" :key="index" class="col">
+        <v-sheet>
+          <v-card class="mx-1 tarjeta" max-width="250">
             <v-img :src="item.imagen" :height="item.nombre"></v-img>
 
             <v-card-title>
@@ -47,14 +47,9 @@
               </div>
             </v-expand-transition>
           </v-card>
-        </template>
+        </v-sheet>
       </v-col>
     </v-row>
-    
-
-
-       
-      
   </v-container>
 </template>
 
@@ -72,3 +67,11 @@ export default {
   
 }
 </script>
+<style lang="scss">
+.col{
+  margin-top: 2rem;
+}
+  .tarjeta {
+    height: 25rem;
+  }
+</style>

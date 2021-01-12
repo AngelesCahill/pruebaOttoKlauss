@@ -51,20 +51,19 @@ export default new Vuex.Store({
     eliminandoProducto(context, id){
       firebase.firestore().collection('juguetes').doc(id).delete()
         .then(()=>{
-          console.log('producto eliminado');
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'El Producto ha si eliminado',
+            title: 'El Producto ha sido eliminado',
             showConfirmButton: false,
             timer: 1500
-          })
+          });
         })
         .catch(error=>console.error(error));
     },
     
     actualizandoProducto(context, datos){
-      return firebase.firestore().collection('juguetes').doc(datos).update(...datos)
+      firebase.firestore().collection('juguetes').doc(datos.id).update({...datos})
       
     },
   }

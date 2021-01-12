@@ -2,7 +2,6 @@
     <div>
         <v-row>
             <v-col cols="12" xs="6" sm="6" md="6" lg="6" xl="6">
-                <h1>Vista Login</h1>
                 <v-card class="overflow-hidden tarjeta" color="light-green" dark>
                     <v-toolbar flat color="indigo">
                     <v-icon x-large>mdi-account</v-icon>
