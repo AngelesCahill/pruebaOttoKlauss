@@ -64,7 +64,7 @@ export default new Vuex.Store({
     },
     
     actualizandoProducto(context, datos){
-      return firebase.firestore().collection('juguetes').doc(datos.idDoc).update(...datos)
+      return firebase.firestore().collection('juguetes').doc(datos).update(...datos)
       
     },
   }

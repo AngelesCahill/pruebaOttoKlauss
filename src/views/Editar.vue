@@ -13,7 +13,7 @@
                 <v-text-field v-model="precio" :rules="precioRules" label="Precio" required></v-text-field>
 
                 <div class="mt-5">
-                    <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
+                    <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate(idDoc)">
                         Guardar
                     </v-btn>
                     <v-btn color="error" class="mr-4" @click="reset">
@@ -86,18 +86,18 @@ export default {
          }
     },
     methods: {
-        validate () {
+        validate (item) {
             this.$refs.form.validate();
             if (this.$refs.form.validate()) {
                 let datosNuevos = {
                     nombre: this.nombre,
                     stock: this.stock,
                     precio: parseFloat(this.precio),
-                    idDoc: this.idDoc,
+                    idDoc: item.idDoc,
                     codigo: this.codigo,
                     imagen: this.imagen,
                 };
-                this.$store.dispatch('actualizandoProducto',datosNuevos).then(()=>{
+                this.$store.dispatch('actualizandoProducto', datosNuevos.idDoc).then(()=>{
                     Swal.fire(
                         'Muy Bien',
                         'Producto Actualizado con éxito',
